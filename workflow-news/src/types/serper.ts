@@ -41,3 +41,22 @@ export type SerperAPIPayload = {
   hl: string;
   location?: string;
 };
+
+export type SerperWebPageParams = {
+  url: string;
+};
+
+export type SerperWebPageSuccess = {
+  success: true;
+  url: string;
+  text: string;
+  title: string;
+};
+
+export type SerperWebPageFailure = {
+  success: false;
+  error: string;
+  details?: string;
+};
+
+export type SerperWebPageResponse = SerperWebPageSuccess | SerperWebPageFailure;

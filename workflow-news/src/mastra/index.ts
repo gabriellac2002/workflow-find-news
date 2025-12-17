@@ -10,10 +10,11 @@ import {
   translationScorer,
 } from "./scorers/weather-scorer";
 import { contentFilterAgent } from "./agents/content-filter-agent";
+import { learningAdvisorAgent } from "./agents/learning-advisor-agent";
 
 export const mastra = new Mastra({
   workflows: { weatherWorkflow, findNewsWorkflow },
-  agents: { weatherAgent, contentFilterAgent },
+  agents: { weatherAgent, contentFilterAgent, learningAdvisorAgent },
   scorers: {
     toolCallAppropriatenessScorer,
     completenessScorer,

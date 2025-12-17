@@ -81,3 +81,16 @@ export type CategorizeStepOutput = z.infer<typeof categorizeStepOutputSchema>;
 export type SelectedResultItem = z.infer<typeof selectedResultItemSchema>;
 export type SelectStepOutput = z.infer<typeof selectStepOutputSchema>;
 export type Category = z.infer<typeof categoryEnum>;
+
+export const scrapingInputSchema = z.object({
+  url: z.string().url(),
+});
+
+export const scrapingOutputSchema = z.object({
+  url: z.string(),
+  text: z.string(),
+  title: z.string(),
+});
+
+export type ScrapingInput = z.infer<typeof scrapingInputSchema>;
+export type ScrapingOutput = z.infer<typeof scrapingOutputSchema>;

@@ -1,7 +1,12 @@
 import { createTool } from "@mastra/core";
 import { inputWorkflowSchema } from "../../schemas/worflowSchema";
-import { searchStepOutputSchema } from "../../schemas/searchResultSchema";
+import {
+  searchStepOutputSchema,
+  scrapingInputSchema,
+  scrapingOutputSchema,
+} from "../../schemas/searchResultSchema";
 import { search } from "../../services/serperWebSearchService";
+import { scrapePage } from "../../services/serperWebPage";
 import { SerperSearchParams } from "../../types/serper";
 
 export const getScrapingTool = createTool({
@@ -31,6 +36,28 @@ export const getScrapingTool = createTool({
     return {
       results: result.results,
       totalResults: result.results.length,
+    };
+  },
+});
+
+export const getScrapingWebTool = createTool({
+  id: "scrape-web-page",
+  description: "Scrapes content from a specific web page URL and returns the text and title.",
+  inputSchema: scrapingInputSchema,
+  outputSchema: scrapingOutputSchema,
+  execute: async ({ context }) => {
+    const result = await scrapePage({
+      url: context.url,
+    });
+
+    if (!result.success) {
+      throw new Error(`Failed to scrape page: ${result.error}`);
+    }
+
+    return {
+      url: result.url,
+      text: result.text,
+      title: result.title,
     };
   },
 });
