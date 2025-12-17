@@ -23,6 +23,8 @@ export const filterResultsStep = createStep({
 
     if (results.length === 0) {
       return {
+        theme,
+        focusArea,
         filteredResults: [],
         removedCount: 0,
         keptCount: 0,
@@ -88,6 +90,8 @@ Respond ONLY with a JSON array. Each item must contain:
     const removedCount = results.length - keptCount;
 
     return {
+      theme,
+      focusArea,
       filteredResults,
       keptCount,
       removedCount,
